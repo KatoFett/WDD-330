@@ -1,3 +1,6 @@
+const HEADER_URL = "/partials/header.html";
+const FOOTER_URL = "/partials/footer.html";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -35,4 +38,29 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   }
   const html = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, html.join(''));
+}
+
+export function renderWithTemplate(template, parentElement, data, position = "afterbegin", clear = false) {
+  if(clear === true) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, template);
+}
+
+export async function loadTemplate(url) {
+  const response = await fetch(url);
+  const html = await response.text();
+  return html;
+}
+
+export async function loadHeaderFooter(headerElement = undefined, footerElement = undefined) {
+  if(headerElement == undefined)
+    headerElement = document.getElementById("header");
+  if(footerElement == undefined)
+    footerElement = document.getElementById("footer");
+
+  const header = await loadTemplate(HEADER_URL);
+  const footer = await loadTemplate(FOOTER_URL);
+  renderWithTemplate(header, headerElement);
+  renderWithTemplate(footer, footerElement);
 }
