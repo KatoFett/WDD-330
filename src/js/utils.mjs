@@ -64,3 +64,12 @@ export async function loadHeaderFooter(headerElement = undefined, footerElement 
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
 }
+
+export function toTitleCase(str) {
+  return str.replace('-',' ').replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
+}

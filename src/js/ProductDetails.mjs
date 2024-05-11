@@ -38,7 +38,7 @@ export default class ProductDetails {
     // img
     elm = document.createElement("img");
     elm.classList.add("divider");
-    elm.src = this.product.Image;
+    elm.src = this.product.Images.PrimaryLarge;
     elm.alt = this.product.NameWithoutBrand;
     section.appendChild(elm);
 
