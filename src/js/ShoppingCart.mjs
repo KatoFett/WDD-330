@@ -5,7 +5,7 @@ const CART_KEY = "so-cart";
 export function renderCartContents() {
   const cartItems = getLocalStorage(CART_KEY);
   if ((cartItems || []).length > 0) {
-    renderListWithTemplate(cartItemTemplate, document.querySelector(".product-list"), cartItems);
+    renderListWithTemplate(cartItemTemplate, document.querySelector(".product-list"), cartItems, "afterbegin", true);
     document
       .querySelector(".cart-card__delete")
       .addEventListener("click", removeFromCart);
@@ -37,13 +37,14 @@ function cartItemTemplate(item) {
 
 export function addProductToCart(product){
   const currentCart = getCart();
-  let cartItem = getItemFromCart(product.id, currentCart);
+  let cartItem = getItemFromCart(product.Id, currentCart);
   if(cartItem === undefined){
     cartItem = {
-      id: product.id,
+      id: product.Id,
       quantity: 1,
       product: product
     };
+    console.log(cartItem);
     currentCart.push(cartItem);
   }
   else {
@@ -54,11 +55,11 @@ export function addProductToCart(product){
 
 function getItemFromCart(id, cart){
   const cartItems = cart || getCart();
-  const matches = cartItems.filter((c) => c.Id == id);
+  const matches = cartItems.filter((c) => c.id == id);
   return matches.length == 1 ? matches[0] : undefined;
 }
 
-function getCart(){
+export function getCart(){
   return getLocalStorage(CART_KEY) || [];
 }
 

@@ -81,6 +81,10 @@ header {
   color: var(--tertiary-color);
 }
 
+.hide {
+  display: none;
+}
+
 .text-center {
   text-align: center;
 }
@@ -209,6 +213,10 @@ button {
 .cart-card__delete {
   grid-row: 1;
   grid-column: 4;
+}
+
+.cart-footer .cart-total {
+  text-align: right;
 }
 
 @media screen and (min-width: 500px) {
