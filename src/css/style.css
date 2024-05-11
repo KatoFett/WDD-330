@@ -81,6 +81,10 @@ header {
   color: var(--tertiary-color);
 }
 
+.text-center {
+    text-align:center;
+}
+
 button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
