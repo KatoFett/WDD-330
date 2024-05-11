@@ -44,7 +44,6 @@ export function addProductToCart(product){
       quantity: 1,
       product: product
     };
-    console.log(cartItem);
     currentCart.push(cartItem);
   }
   else {
