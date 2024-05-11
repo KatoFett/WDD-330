@@ -1,6 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-
-const CART_KEY = "so-cart";
+import { addProductToCart } from "./ShoppingCart.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -13,9 +12,7 @@ export default class ProductDetails {
     this.renderProductDetails("main");
   }
   addToCart() {
-    const currentCart = getLocalStorage(CART_KEY) || [];
-    currentCart.push(this.product);
-    setLocalStorage(CART_KEY, currentCart);
+    addProductToCart(this.product);
   }
   renderProductDetails(selector) {
     const container = document.querySelector(selector);
