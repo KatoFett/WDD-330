@@ -1,5 +1,7 @@
 import { loadHeaderFooter } from "./utils.mjs";
-import showSummary from "./CheckoutProcess.mjs";
+import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
-showSummary();
+const form = document.querySelector("main form");
+const checkout = new CheckoutProcess(form);
+checkout.displaySummary();

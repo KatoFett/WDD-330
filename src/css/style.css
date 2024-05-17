@@ -25,7 +25,7 @@ body {
 img {
   max-width: 100%;
 }
-header { 
+header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
@@ -226,37 +226,37 @@ button {
 
 form input,
 form select {
-    display: block;
-    margin-bottom: 1em;
-    width: 100%;
-    padding: 1em;
-    border: 1px solid var(--light-grey);
+  display: block;
+  margin-bottom: 1em;
+  width: 100%;
+  padding: 1em;
+  border: 1px solid var(--light-grey);
 }
 
 form fieldset {
-    margin-bottom: 2em;
-    padding: 1em 1em 0 1em;
-    border: 1px solid var(--primary-color);
+  margin-bottom: 2em;
+  padding: 1em 1em 0 1em;
+  border: 1px solid var(--primary-color);
 }
 
 form fieldset legend {
-    font-size: var(--large-font);
+  font-size: var(--large-font);
 }
 
 .checkout-summary {
-    display: grid;
-    grid-template-columns: auto auto;
-    width: fit-content;
-    margin-bottom: 1em;
+  display: grid;
+  grid-template-columns: auto auto;
+  width: fit-content;
+  margin-bottom: 1em;
 }
 
 .checkout-summary > p:nth-child(2n) {
-    text-align: right;
-    margin-left: 2em;
+  text-align: right;
+  margin-left: 2em;
 }
 
 .checkout-summary > p {
-    margin: 0.5em 0 0.5em 0;
+  margin: 0.5em 0 0.5em 0;
 }
 
 @media screen and (min-width: 500px) {
@@ -275,7 +275,7 @@ form fieldset legend {
   form select {
     display: block;
     margin-bottom: 1em;
-    width:  400px;
+    width: 400px;
   }
 }
 

@@ -41,7 +41,7 @@
             </label>
             <label>
               Street Address*
-              <input type="text" name="address" required />
+              <input type="text" name="street" required />
             </label>
             <label>
               City*
@@ -113,15 +113,33 @@
             <legend>Payment Information</legend>
             <label>
               Credit Card Number*
-              <input type="text" name="credit_card_number" required maxlength="16" placeholder="0000-0000-0000-0000" />
+              <input
+                type="text"
+                name="cardNumber"
+                required
+                maxlength="16"
+                placeholder="0000-0000-0000-0000"
+              />
             </label>
             <label>
               Expiration Date*
-              <input type="text" name="credit_card_expiration" required maxlength="5" placeholder="00/00" />
+              <input
+                type="text"
+                name="expiration"
+                required
+                maxlength="5"
+                placeholder="00/00"
+              />
             </label>
             <label>
               Security Code*
-              <input type="text" name="credit_card_cvv" required maxlength="3" placeholder="000" />
+              <input
+                type="text"
+                name="code"
+                required
+                maxlength="3"
+                placeholder="000"
+              />
             </label>
           </fieldset>
           <button>Submit</button>
