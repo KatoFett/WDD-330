@@ -12,5 +12,5 @@ if (cart.length > 0) {
     0,
   );
   document.querySelector(".cart-footer").classList.remove("hide");
-  document.querySelector(".cart-total").innerText = `Total: $${total}`;
+  document.querySelector(".cart-total").innerText = `Total: $${total.toFixed(2)}`;
 }
