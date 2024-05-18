@@ -1,3 +1,5 @@
+import { getCart } from "./ShoppingCart.mjs";
+
 const HEADER_URL = "/partials/header.html";
 const FOOTER_URL = "/partials/footer.html";
 
@@ -63,6 +65,18 @@ export async function loadHeaderFooter(headerElement = undefined, footerElement 
   const footer = await loadTemplate(FOOTER_URL);
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
+
+  updateCartCount();
+}
+
+export function updateCartCount() {
+  const cart = getCart();
+  if (cart.length > 0) {
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCount = document.querySelector(".cart-count");
+    cartCount.classList.remove("hide");
+    cartCount.textContent = totalQuantity;
+  }
 }
 
 export function toTitleCase(str) {

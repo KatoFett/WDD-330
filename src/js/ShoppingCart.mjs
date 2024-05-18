@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate, updateCartCount } from "./utils.mjs";
 
 const CART_KEY = "so-cart";
 
@@ -7,8 +7,8 @@ export function renderCartContents() {
   if ((cartItems || []).length > 0) {
     renderListWithTemplate(cartItemTemplate, document.querySelector(".product-list"), cartItems, "afterbegin", true);
     document
-      .querySelector(".cart-card__delete")
-      .addEventListener("click", removeFromCart);
+      .querySelectorAll(".cart-card__delete")
+      .forEach(elm => elm.addEventListener("click", removeFromCart));
   } else {
     document.querySelector(".product-list").innerHTML =
       "<li>Your cart is empty. But not for long, right?</li>";
@@ -50,6 +50,7 @@ export function addProductToCart(product){
     cartItem.quantity++;
   }
   setLocalStorage(CART_KEY, currentCart);
+  updateCartCount();
 }
 
 function getItemFromCart(id, cart){
@@ -64,6 +65,7 @@ export function getCart(){
 
 export function clearCart() {
   setLocalStorage(CART_KEY, []);
+  updateCartCount();
 }
 
 function removeFromCart() {
@@ -78,4 +80,5 @@ function removeFromCart() {
 
   // Refresh display.
   renderCartContents();
+  updateCartCount();
 }

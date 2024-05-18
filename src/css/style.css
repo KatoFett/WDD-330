@@ -119,6 +119,18 @@ button {
   fill: gray;
 }
 
+.cart .cart-count {
+  position: absolute;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  top: 15px;
+  right: -5px;
+  font-size: var(--small-font);
+  background-color: red;
+  color: white;
+}
+
 /* End cart icon styles */
 
 .mission {
