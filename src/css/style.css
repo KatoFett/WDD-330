@@ -7,6 +7,7 @@
   --tertiary-color: #a4b8c4;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
+  --red: #cc0000;
 
   /* sizes */
   --font-base: 18px;
@@ -224,10 +225,14 @@ button {
 
 /* Checkout */
 
+form label {
+  display: block;
+  margin-bottom: 1em;
+}
+
 form input,
 form select {
   display: block;
-  margin-bottom: 1em;
   width: 100%;
   padding: 1em;
   border: 1px solid var(--light-grey);
@@ -259,6 +264,16 @@ form fieldset legend {
   margin: 0.5em 0 0.5em 0;
 }
 
+input.input-invalid,
+select.input-invalid {
+  border-color: var(--red);
+}
+
+.validation-msg {
+  color: var(--red);
+  margin: 0;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -274,7 +289,6 @@ form fieldset legend {
   form input,
   form select {
     display: block;
-    margin-bottom: 1em;
     width: 400px;
   }
 }

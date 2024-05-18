@@ -1,4 +1,4 @@
-import { getCart } from "./ShoppingCart.mjs";
+import { getCart, clearCart } from "./ShoppingCart.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const TAX_PERCENT = 0.06;
@@ -29,8 +29,17 @@ export default class CheckoutProcess {
     // Intercept submit
     event.preventDefault();
 
+    const form = event.target;
+    form.reportValidity();
+    if (!form.checkValidity())
+      return;
+
+    // Clear validation messages
+    document.querySelectorAll(".validation-msg").forEach(e => e.remove());
+    document.querySelectorAll(".input-invalid").forEach(e => e.classList.remove("input-invalid"));
+
     // Prepare data
-    const json = formToJSON(event.target);
+    const json = formToJSON(form);
     json.orderDate = new Date().toISOString();
     json.items = packageItems(this.cart);
     json.orderTotal = this.total.toFixed(2);
@@ -39,8 +48,27 @@ export default class CheckoutProcess {
 
     // Submit data
     external = new ExternalServices();
-    const response = await external.checkout(json);
-    console.log(response);
+    try {
+      const response = await external.checkout(json);
+      if (response.orderId > 0) {
+        clearCart();
+        window.location.assign("/checkout/success.html");
+      }
+      else {
+        const invalid = Object.keys(response);
+        for (name of invalid) {
+          const input = document.querySelector(`form [name="${name}"]`);
+          input.classList.add("input-invalid");
+          const p = document.createElement("p");
+          p.classList.add("validation-msg");
+          p.textContent = response[name];
+          input.after(p);
+        }
+      }
+    }
+    catch (error) {
+      alert("An error occurred while checking out.");
+    }
   }
 }
 

@@ -62,6 +62,10 @@ export function getCart(){
   return getLocalStorage(CART_KEY) || [];
 }
 
+export function clearCart() {
+  setLocalStorage(CART_KEY, []);
+}
+
 function removeFromCart() {
   const id = this.dataset.id;
 

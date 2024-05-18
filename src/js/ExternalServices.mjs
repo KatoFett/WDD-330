@@ -1,10 +1,11 @@
 const baseURL = import.meta.env.VITE_SERVER_URL
 
 function convertToJson(res) {
+  const json = res.json();
   if (res.ok) {
-    return res.json();
+    return json;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "servicesError", message: json };
   }
 }
 
@@ -18,7 +19,8 @@ export default class ExternalServices {
   async findProductById(id) {
     const response = await fetch(baseURL + `product/${id}`);
     const data = await convertToJson(response);
-    return data.Result;  }
+    return data.Result;
+  }
   async checkout(order) {
     const options = {
       method: "POST",
